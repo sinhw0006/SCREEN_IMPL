@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1" width="400px" height="100px">
+        <thead>
+            <tr>
+                <td>a</td>
+                <td>b</td>
+                <td>c</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>e</td>
+                <td>f</td>
+                <td>g</td>
+            </tr>
+            <tr>
+                <td>e</td>
+                <td>f</td>
+                <td>g</td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <style>
+        .tbl_rowspan td {
+            width: 35px;
+            height: 35px;
+            border: 1px solid;
+            text-align: center;
+        }
+    </style>
+    <table class="tbl_rowspan">
+        <caption>행병합</caption>
+        <tr>
+            <td rowspan="2">1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td rowspan="2">6</td>
+            <td>7</td>
+            <td rowspan="4">8</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>11</td>
+        </tr>
+
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+        </tr>
+
+        <tr>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+        </tr>
+    </table>
+    <hr />
+    <style>
+        .tbl_colspan td {
+            width: 35px;
+            height: 35px;
+            border: 1px solid;
+            text-align: center;
+        }
+    </style>
+    <table class="tbl_rowspan">
+        <caption>열병합</caption>
+        <tr>
+            <td colspan="2">1</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td colspan="3">6</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+        </tr>
+
+        <tr>
+            <td colspan="4">13</td>
+        </tr>
+
+        <tr>
+            <td colspan="3">17</td>
+            <td>20</td>
+        </tr>
+    </table>
+</body>
+
+</html>

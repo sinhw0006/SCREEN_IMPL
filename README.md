@@ -1,3 +1,3 @@
 # SCREEN_IMPL
 
-HTML 실습
+화면구현

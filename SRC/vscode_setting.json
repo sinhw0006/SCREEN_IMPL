@@ -1,0 +1,43 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "json.schemas": [],
+    "workbench.colorCustomizations": {
+      "editor.background": "#1e1e1e"
+    },
+    "editor.tokenColorCustomizations": {
+      "comments": "#00f7ff",
+      "textMateRules": [
+        {
+          "scope": "entity.name.tag",  
+          "settings": {
+            "foreground": "#fdfdfd" 
+          }
+        },
+        {
+          "scope": "punctuation.definition.tag", 
+          "settings": {
+            "foreground": "#4CAF50" 
+          }
+        },
+        {
+          "scope": "entity.other.attribute-name",  
+          "settings": {
+            "foreground": "#21f325" 
+          }
+        },
+        {
+          "scope": "text.html.basic", 
+          "settings": {
+            "foreground": "#00fb04"  
+          }
+        },
+        {
+          "scope": "string.quoted.double.html",
+          "settings": {
+            "foreground": "#ffffff" 
+          }
+        }
+      ],
+    }
+  }

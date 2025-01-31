@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            font-size: 24px;
+        }
+        div{
+            text-align: center;
+            margin: 20px; padding: 20px;
+            border: 1px solid;
+        }
+        .block1{
+            width: 250px;
+            height: 250px;
+            font-size: 16px;
+            text-align: center;
+            line-height: 250px;
+        }
+        .block2{
+            width: 15.625rem;
+            height: 15.625rem;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 15.625rem;
+        }
+        .block3{
+            width: clamp(15.625rem,50vw,50rem);
+            height: 23.148vh;
+            font-size: clamp(1.5rem,10vw,7rem);
+            text-align: center;
+            line-height: 23.148vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- rem 태그 적용 -->
+     <div class="block1">BLOCK1</div>
+     <hr>
+     <div class="block2">BLOCK2</div>
+     <hr>
+     <div class="block3">BLOCK3</div>
+</body>
+</html>

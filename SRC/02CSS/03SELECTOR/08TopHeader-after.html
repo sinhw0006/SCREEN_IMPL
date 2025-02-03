@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+    <style>
+        /* 전체선택자 */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* 요소선택자 */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        /* 자식선택자 */
+        .wrapper {
+            height: 100vh;
+            border: 1px solid;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wrapper>header {}
+
+        .wrapper>header>.top-header {
+            height: 25px;
+        }
+
+        .wrapper>header>.top-header>ul {
+            display: flex;
+            padding-top: 5px;
+            justify-content: right;
+            align-items: center;
+        }
+
+        .wrapper>header>.top-header>ul>li {
+            padding: 0 10px;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper>header>.top-header>ul>li::after {
+            display: flex;
+            top: 0px;
+            left: 100%;
+            content: '';
+            width: 1px;
+            height: 100%;
+            background-color: red;
+        }
+
+        .wrapper>header>.top-header>ul>li:last-child {
+            padding-right: 5px;
+        }
+
+        .wrapper>header>.top-header>ul>li:last-child::after {
+            width: 0;
+            height: 0;
+        }
+
+        .wrapper>header>.top-header>ul>li>a {
+            font-size: .6rem;
+            display: block;
+        }
+
+        .wrapper>header>nav {}
+
+        .wrapper>main {
+            width: 100%;
+            height: 400px;
+        }
+
+        #plus {
+            width: 50px;
+            height: 50px;
+            background-color: aqua;
+            border: 1px solid;
+            margin: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: -1;
+        }
+
+        #minus {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(202, 66, 89);
+            border: 1px solid;
+            margin: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: 1s;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: -1;
+        }
+
+        .center {
+            border: 1px solid green;
+            border-radius: 50%;
+        }
+
+        .wrapper>main>section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper>footer {}
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="top-header">
+                <ul>
+                    <li><a class="test" href="javascript:void(0)">로그인</a></li>
+                    <li><a href="javascript:void(0)">회원가입</a></li>
+                    <li><a href="javascript:void(0)">장바구니</a></li>
+                    <li><a href="javascript:void(0)">마이옥션</a></li>
+                    <li><a href="javascript:void(0)">고객센터</a></li>
+                    <li><a href="javascript:void(0)">판매하기</a></li>
+                </ul>
+            </div>
+            <nav></nav>
+        </header>
+        <main>
+            <section>
+                <div id="plus">
+                    <div class="center"></div>
+                </div>
+                <div id="minus">
+                    <div class="center"></div>
+                </div>
+            </section>
+            <section>
+                <input id="text" type="text" value="" readonly>
+            </section>
+            <section>
+                <label>X : </label>
+                <p id="x">a</p>
+                <label>Y : </label>
+                <p id="y">a</p>
+            </section>
+        </main>
+        <footer></footer>
+    </div>
+
+
+    <script>
+        var count = 0;
+        const center = 35;
+        $('#plus').mouseleave(function () {
+            count++;
+            $('#text').val(count);
+        });
+        $('#minus').mouseenter(function () {
+            count--;
+            $('#text').val(count);
+        });
+        $('.wrapper').mousemove(function () {
+            $('#x').text(event.pageX);
+            $('#y').text(event.pageY);
+        });
+
+        $('.wrapper').mousemove(function () {
+            var ch_x = event.pageX;
+            var ch_y = event.pageY;
+            $('#plus').css({ "top": ch_y - center, "left": ch_x - center });
+        });
+        $('.wrapper').click(function () {
+            var ch_x = event.pageX;
+            var ch_y = event.pageY;
+            $('#minus').css({ "top": ch_y - center, "left": ch_x - center });
+            
+        });
+    </script>
+
+</body>
+
+</html>

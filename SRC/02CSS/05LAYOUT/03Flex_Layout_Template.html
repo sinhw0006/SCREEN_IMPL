@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 10px;
+        }
+
+        /* common */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* layout */
+        .wrapper {}
+
+        /* header */
+        .wrapper>header {}
+
+        .wrapper>header>.top-header {}
+
+        .wrapper>header>nav>.nav-div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px;
+            background-color: black;
+            color: white;
+            flex-wrap: wrap;
+        }
+        .wrapper>header>nav>.nav-div>.nav-log-div{
+            display: flex;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 1000px;
+        }
+        .wrapper>header>nav>.nav-div>.nav-log-div>.nav-logo {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .wrapper>header>nav>.nav-div>.nav-menu {
+        }
+
+        .wrapper>header>nav>.nav-div>.nav-menu>ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .wrapper>header>nav>.nav-div>.nav-menu>ul>li {
+        }
+
+        /* main  */
+        .wrapper>main {}
+
+        .wrapper>main>section {}
+
+        .wrapper>main>section>.card-container {
+            display: flex;
+            justify-self: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 15px;
+            gap: 15px;
+        }
+
+        .wrapper>main>section>.card-container>.card {
+            border: 1px solid lightgray;
+            border-radius: 15px;
+            box-shadow: 1px 1px 1px 1px lightgray;
+            padding: 0 15px;
+            flex-basis: 450px;
+        }
+
+        .wrapper>main>section>.container {
+            border: 1px solid;
+            margin: 15px;
+        }
+
+        .wrapper>main>section>.container>.media-item {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 15px;
+            gap: 15px;
+            ;
+        }
+
+        .wrapper>main>section>.container>.media-item>.media-img {
+            height: 100px;
+            background-color: lightgray;
+            flex-grow: 1;
+            flex-basis: 150px;
+        }
+
+        .wrapper>main>section>.container>.media-item>.media-content {
+            align-items: flex-start;
+            flex-grow: 9;
+            flex-basis: 700px;
+        }
+
+        .wrapper>main>section>.container>.media-item>.media-content>h3,
+        .wrapper>main>section>.container>.media-item>.media-content>p {
+            margin: 0;
+        }
+
+        /* footer */
+        .wrapper>footer {}
+
+        .wrapper>footer>.footer {
+            display: flex;
+            justify-content: left;
+            background-color: black;
+            color: white;
+            padding: 15px;
+            flex-wrap: wrap;
+        }
+
+        .wrapper>footer>.footer>.footer-section {
+            flex-grow: 1;
+            flex-basis: 250px;
+        }
+
+        @media(max-width:768px) {
+            .wrapper>header>nav>.nav-div>.nav-menu>ul{
+                margin-top: 40px;
+                flex-direction: column;
+            }
+            .wrapper>header>nav>.nav-div>.nav-menu>ul>li{
+                min-height: 80px;
+            }
+            .wrapper>header>nav>.nav-div>.nav-log-div{
+                justify-content: center;
+            }
+            .wrapper>header>nav>.nav-div{
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <header>
+            <div class="top-header">
+                <h1>1. 네비게이션 바 레이아웃</h1>
+            </div>
+            <nav>
+                <div class="nav-div">
+                    <div class="nav-log-div">
+                        <div class="nav-logo">Logo</div>
+                    </div>
+                    <div class="nav-menu">
+                        <ul>
+                            <li>Home</li>
+                            <li>About</li>
+                            <li>Services</li>
+                            <li>Contact</li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+
+            <section>
+                <h1>2. 카드 레이아웃</h1>
+                <div class="card-container">
+                    <div class="card">
+                        <h3>Product 1</h3>
+                        <p>상품 설명이 들어갑니다. 실무에서 자주 사용되는 카드 형태의 레이아웃입니다.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Product 2</h3>
+                        <p>반응형으로 구현되어 화면 크기에 따라 자동으로 배치가 조절됩니다.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Product 3</h3>
+                        <p>flex-wrap과 flex-basis를 활용하여 유동적인 레이아웃을 구현했습니다.</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h1>3. 미디어 컨텐츠 레이아웃</h1>
+                <div class="container">
+                    <div class="media-item">
+                        <div class="media-img"></div>
+                        <div class="media-content">
+                            <h3>뉴스 제목</h3>
+                            <p>뉴스 내용이 들어갑니다. 이미지와 텍스트가 나란히 배치되는 레이아웃입니다.</p>
+                        </div>
+                    </div>
+                    <div class="media-item">
+                        <div class="media-img"></div>
+                        <div class="media-content">
+                            <h3>블로그 포스트</h3>
+                            <p>블로그 내용이 들어갑니다. 모바일에서는 세로로 배치됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+        <footer>
+            <h1>4. 반응형 푸터</h1>
+            <footer class="footer">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>회사 소개 내용이 들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>연락처 정보가 들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>소셜 미디어 링크가 들어갑니다.</p>
+                </div>
+            </footer>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,374 @@
+*{
+    box-sizing: border-box;  
+    
+}
+
+:root{
+    font-size :12px;
+}
+/* common */
+a{ text-decoration: none;color:black;}
+ul{list-style: none;margin:0;padding :0;}
+
+body{
+    margin-top:5px;
+    font-family : "nanum gothic", "나눔고딕", "NanumGothic", "NanumGothicWebFont", "Malgun Gothic", "맑은 고딕";
+    font-size : .8rem;
+    color:rgb(85, 85, 85);
+    font-family:sans-serif;
+
+    min-height : 3000px;
+}
+
+body::-webkit-scrollbar{
+    display:none;
+}
+
+/* layout */
+.layout-basic{
+ padding :0 240px;
+}
+.layout-width{
+  
+}
+.layout-padding{
+  
+}
+.wrapper{
+
+}
+/* header */
+.wrapper>header>*{
+    border-top : 1px solid lightgray;
+}
+.wrapper>header{
+   
+}
+.wrapper>header>.top-header{
+    height:45px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    
+}
+
+.wrapper>header>.top-header>.left{
+    height : 100%;
+    border-left : 1px solid lightgray;
+  
+}
+.wrapper>header>.top-header>.left>ul{
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    width:22rem;
+    height:100%;
+
+}
+.wrapper>header>.top-header>.left>ul>li{
+    padding : 0 .5rem;
+    width : 100%;
+}
+.wrapper>header>.top-header>.left>ul>li>a{
+    display:block;
+}
+.wrapper>header>.top-header>.right{
+    height:45px;
+    border-right : 1px solid lightgray;
+}
+.wrapper>header>.top-header>.right>ul{
+    display:flex;
+    justify-content: right;
+    align-items: center;
+    min-width:40rem;
+    height:100%;
+}
+.wrapper>header>.top-header>.right>ul>li{
+    padding : 0 .5rem;
+    width : 100%;
+    height:100%;
+    line-height : 45px;
+}
+.wrapper>header>.top-header>.right>ul>li>a{
+    display:block;
+
+    text-align: center;
+}
+
+.wrapper>header>.top-header>.right>ul>li:last-child{
+    border-left:1px solid lightgray;
+    border-right:1px solid lightgray;
+}
+
+/*  */
+.wrapper>header>.logo{
+    min-height :100px;
+    width : 100%;
+    height : 100%;
+    position:relative;
+    
+}
+.wrapper>header>.logo>img{
+    position:absolute;
+    left:0;right:0;
+    top:0;bottom:0;
+    margin : auto;
+}
+.wrapper>header>nav{
+    height : 48px;
+    font-size :1rem;
+}
+/* mainmenu */
+.wrapper>header>nav>ul.mainmenu{
+    display:flex;
+    justify-content: space-between;
+    height : 100%;
+}
+.wrapper>header>nav>ul.mainmenu>li{
+  
+    flex-shrink: 0;
+    height : 48px;
+    padding : 0 18px;
+    position:relative;
+    line-height : 48px;
+    text-align : center;
+   
+
+}
+
+
+
+.wrapper>header>nav>ul.mainmenu>li>a{
+    display:block;
+  
+}
+/* submenu */
+.wrapper>header>nav>ul.mainmenu>li>ul.submenu{
+   
+    position:absolute;
+    width : 100%;
+    left:0;
+    display:none;
+    background-color: white;
+    z-index:100;
+}
+.wrapper>header>nav>ul.mainmenu>li>ul.submenu>li{
+    
+    position:relative;
+}
+.wrapper>header>nav>ul.mainmenu>li>ul.submenu>li>a{
+    display:block;
+}
+
+
+
+
+/* thirdmenu */
+.wrapper>header>nav>ul.mainmenu>li>ul.submenu>li>ul.thirdmenu{
+   
+    position:absolute;
+    left:100%;
+    top:0px;
+    width:100%;
+    background-color: white;
+    display:none;
+    z-index : 100;
+}
+.wrapper>header>nav>ul.mainmenu>li>ul.submenu>li>ul.thirdmenu>li{
+
+}
+.wrapper>header>nav>ul.mainmenu>li>ul.submenu>li>ul.thirdmenu>li>a{}
+
+/* 서브메뉴 hover시 이미지 박스 표시*/
+.wrapper>header>nav>ul.mainmenu>li>.image-box{
+    position:absolute;
+    left :0;
+    
+    width : 400px;
+    height :100%;
+   
+    z-index :5;
+    background-color: white;
+    border :1 px solid;
+    display:none;
+}
+.wrapper>header>nav>ul.mainmenu>li:hover>.image-box{
+    display:block;
+}
+
+
+/* hover event */
+.wrapper>header>nav>ul.mainmenu>li:hover>ul.submenu{
+    display:block;
+}
+.wrapper>header>nav>ul.mainmenu>li>ul.submenu>li:hover>ul.thirdmenu{
+    display:block;
+}
+
+
+/* left-site menu */
+.wrapper>header>nav>ul.mainmenu{
+    position:relative;
+}
+.wrapper>header>nav>ul.mainmenu>li.left-site{
+    position:relative;
+    margin-right : 50px;
+}
+
+.wrapper>header>nav>ul.mainmenu>li.left-site{
+
+}
+
+.wrapper>header>nav>ul.mainmenu>.left-site-content{
+    width : 100%;
+    min-height : 500px;
+    
+    border : 1px solid;
+    background-color: transparent;
+    z-index : 200;
+    display:block;
+    position:absolute;
+    top:48px;
+    left:0;
+    display:none;
+}
+.wrapper>header>nav>ul.mainmenu>.left-site-content>ul{
+    display:flex;
+    justify-content: space-between;
+    align-items: start;
+    border : 1px solid;
+    background-color: white;    
+}
+.wrapper>header>nav>ul.mainmenu>li.left-site:hover+.left-site-content{
+    display:block;
+}
+.wrapper>header>nav>ul.mainmenu>li.left-site>a{
+    height : 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+/* right-site menu */
+.wrapper>header>nav>ul.mainmenu>li.right-site{
+    position:relative;
+    margin-left : 50px;
+
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>a{
+    height : 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu{
+    position:absolute;
+    /* -480px == 25vw */
+    width :calc(100vw - 25vw);
+    min-height : 350px;
+    /* -100vw +480px + 45px */
+    left:calc(-100vw + 25vw + 2.344vw);
+   
+    border : 1px solid;
+    background-color: white;
+    padding : 25px;
+   
+    display:none;
+    justify-content: space-between;
+    align-items: start;
+    gap : 25px;
+    overflow:auto;
+
+
+    
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu::-webkit-scrollbar{
+    display:none;
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu>li{
+    width:100%;
+    height : 48px;
+    position:relative;
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu>li::after{
+    content:"";
+    width : 100%;
+    height : 1px;
+    position:absolute;
+    left:0;
+    
+    background-color: lightgray;
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu>li>a{
+    font-weight:600;
+    display:block;
+  
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu>li>ul.thirdmenu{
+    
+    display:block;
+    position:absolute;
+    left:0;
+    top:48px;
+    display:flex;
+    justify-content: space-between;
+    align-items: start;
+    
+    width : 100%;
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu>li>ul.thirdmenu>li{
+    width : 100%;
+    height : 250px;
+   
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu>li>ul.thirdmenu>li>a{
+    border : 0;
+    padding : 5px;
+}
+.wrapper>header>nav>ul.mainmenu>li.right-site>ul.submenu>li>ul.thirdmenu>li>a>img{
+   
+    width : 100%;
+    height : 100%;
+    object-fit: contain;
+
+   
+}
+
+.wrapper>header>nav>ul.mainmenu>li.right-site:hover>ul.submenu{
+    display:flex;
+}
+
+
+
+/* main  */
+.wrapper>main{
+    position:relative;
+}
+
+.wrapper>main>section{
+
+
+}
+.wrapper>main>section.banner{
+    width : 100%;
+    position:absolute;
+    top:-22.4vh;
+    left : 0;
+    z-index:-1;
+    margin : 0 auto;
+
+}
+.wrapper>main>section.banner>img{
+    width:100%;
+    height : 100%;
+   
+}
+
+
+/* footer */
+.wrapper>footer{}

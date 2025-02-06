@@ -1,0 +1,139 @@
+/* */
+body{
+    width: 75vw;
+    margin: 0 auto;
+}
+.line{
+    border: 1px solid;
+}
+
+/* 컨텐츠 */
+main{
+}
+main>section{
+}
+main>section>.mini-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    font-weight: bold;
+}
+main>section>.mini-menu>.page-menu{
+    
+}
+main>section>.mini-menu>.page-menu>a::after{
+    content: " > ";
+}
+main>section>.mini-menu>.page-menu>a:last-child::after{
+    content: none;
+}
+main>section>.mini-menu>.quick-menu>a::after{
+    content: " | ";
+}
+main>section>.mini-menu>.quick-menu>a:last-child::after{
+    content: none;
+}
+main>section>.content-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0px;
+    gap: 20px;
+}
+main>section>.content-title>p{
+    font-size: 32px;
+}
+
+main>section>.content-title>.favorite-count{
+    border: 1px solid lightgray;
+    background-color: lightgray;
+    border-radius: 50%;
+    padding: 10px;
+}
+main>section>.product-menu-container{
+    position: relative;
+}
+
+main>section>.product-menu-container>.product-meun{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 15px;
+    font-size: 20px;
+}
+
+main>section>.product-menu-container>.product-line{
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    width: 74vw;
+}
+main>section>.product-menu-container>.product-meun>.product-title{
+    border: 1px solid;
+    padding: 15px;
+}
+main>section>.product-menu-container>.product-meun>.product-title>span{
+    color: rgb(145, 43, 69);
+    font-size: 24px;
+    font-weight: bold;
+}
+main>section>.product-menu-container>.product-meun>.compare{
+    position: absolute;
+    border: 1px solid;
+    padding: 15px;
+    max-width: 120px;
+    top: 19px;
+    left: 245px;
+    background-color: white;
+}
+main>section>.product-menu-container>.product-meun>.product-quick>a{
+    padding: 0 10px;
+}
+main>section>.product-menu-container>.product-meun>.product-quick>button{
+    border: none;
+    background-color: white;
+}
+main>section>.product-container{
+    display: flex;
+    padding: 15px;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+main>section>.product-container>.product-content{
+    flex-grow: 1;
+    max-width: 300px;
+    flex-basis: 200px;
+}
+main>section>.product-container>.product-content>span{
+    display: block;
+    font-size: 18px;
+    padding: 15px 0;
+}
+main>section>.product-container>.product-content>p{
+    padding: 15px 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+main>section>.product-container>.product-content>a{
+    display: block;
+}
+main>section>.product-container>.product-content>a>img{
+    max-height: 300px;
+}
+
+main>section>.page-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    gap: 15px;
+    padding: 80px;
+}
+
+@media(max-width:1280px){
+    main>section>.product-menu-container>.product-meun>.product-quick{
+        display: none;
+    }
+}

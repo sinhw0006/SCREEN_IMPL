@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        *{box-sizing: border-box;}
+        .slider-block{
+            width: 800px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid;
+            overflow: hidden;
+        }
+        .slider-block>.slider-wrapper{
+            width: 2400px;
+            height: 400px;
+            display: flex;
+            justify-content: left;
+            align-items: center;  
+            position: relative;
+            transition: 1s;
+        }
+        .slider-block>.slider-wrapper>.item{
+            width: 800px;
+            height: 400px;
+            position: relative;
+            text-align: center;
+            line-height: 400px;
+            font-size: 64px;
+            font-weight: bold;
+        }
+        .slider-block>.slider-wrapper>.item:nth-child(1){background-color: red;}
+        .slider-block>.slider-wrapper>.item:nth-child(2){background-color: orange;}
+        .slider-block>.slider-wrapper>.item:nth-child(3){background-color: yellow;}
+
+        .slider-block>.slider-wrapper>.item>label{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            color: white;
+            background-color: black;
+            z-index: 3;
+            top: 175px;
+        }
+        .slider-block>.slider-wrapper>.item>label>.material-symbols-outlined{
+            font-size: 3rem;
+            display: block;
+            cursor: pointer;
+        }
+        .slider-block>.slider-wrapper>.item>label.prev{
+            left: 20px;
+        }
+        .slider-block>.slider-wrapper>.item>label.next{
+            right: 20px;
+        }
+
+        .slider-block>input[type="radio"]{
+            display: none;
+        }
+        .slider-block>input[type="radio"]#forward-2:checked~.slider-wrapper{
+            left: -800px;
+        }
+        .slider-block>input[type="radio"]#forward-3:checked~.slider-wrapper{
+            left: -1600px;
+        }
+        .slider-block>input[type="radio"]#backend-1:checked~.slider-wrapper{
+            left: 0px;
+        }
+        .slider-block>input[type="radio"]#backend-2:checked~.slider-wrapper{
+            left: -800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-block">
+        <input type="radio" name="slideradio" id="forward-2">
+        <input type="radio" name="slideradio" id="forward-3">
+        <input type="radio" name="slideradio" id="backend-1" checked>
+        <input type="radio" name="slideradio" id="backend-2">
+        <div class="slider-wrapper">
+            <div class="item">
+                <label for="forward-2" class="next">
+                    <span class="material-symbols-outlined">arrow_right</span>
+                </label>
+                <div class="show one">SLIDER-01</div>
+            </div>
+            <div class="item">
+                <label for="backend-1" class="prev">
+                    <span class="material-symbols-outlined">arrow_left</span>
+                </label>
+                <label for="forward-3" class="next">
+                    <span class="material-symbols-outlined">arrow_right</span>
+                </label>
+                <div class="show two">SLIDER-02</div>
+            </div>
+            <div class="item">
+                <label for="backend-2" class="prev">
+                    <span class="material-symbols-outlined">arrow_left</span>
+                </label>
+                <div class="show three">SLIDER-03</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

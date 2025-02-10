@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box" style="width: 50px; height: 50px; background-color: royalblue;"></div>
+    <script defer>
+        const boxEl = document.querySelector('.box');
+        let ckeck = 1;
+        boxEl.addEventListener('click', () => {
+            if (ckeck == 1) {
+                boxEl.style.backgroundColor = 'black';
+                ckeck = 0;
+            } else {
+                boxEl.style.backgroundColor = 'red';
+                ckeck = 1;
+            }
+        })
+    </script>
+</body>
+
+</html>

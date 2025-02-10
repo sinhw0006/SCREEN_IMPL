@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        .test{
+            position: fixed;
+            width: 100%;
+            bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="alert('TEST')">
+        BUTTON 1
+    </button>
+    <button onclick="alert(10+20)">
+        BUTTON 2
+    </button>
+    <button
+        onclick="alert('TEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\nTEST\n')">
+        BUTTON 3
+    </button>
+    <hr>
+    <div class="test">
+        <a href="javascript:alert('TEST')">TEST1</a>
+        <a href="javascript:void(0)">TEST2</a>
+        <a href="javascript:console.log('TEST')">TEST3</a>
+        <a href="javascript:console.log(obj.name)">TEST4</a>
+    </div>
+    <script>
+        const obj = {"name": "aaa","age":"55"}
+    </script>
+</body>
+
+</html>

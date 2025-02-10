@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 배열
+        let arr = ['str1','str2',null, false,true,undefined,{name:"홍길돌",age:11}];
+        console.log(typeof arr);
+        console.log(arr[0], typeof arr[0])
+        console.log(arr[1], typeof arr[1])
+        console.log(arr[2], typeof arr[2])
+        console.log(arr[3], typeof arr[3])
+        console.log(arr[4], typeof arr[4])
+        console.log(arr[5], typeof arr[5])
+        console.log(arr[6], typeof arr[6])
+
+        console.log(arr);
+        arr[7] = 100;
+        console.log(arr);
+        arr[10] = `${arr[2]}`;
+        console.log(arr);
+        console.log(arr[8],arr[9],arr[500]);
+        console.log(arr.length);
+        // 배열 함수 - forEach
+        console.log("======================")
+        arr.forEach((item)=>{
+            console.log('item : ',item);
+            
+        }) // 콜백 함수
+        arr.push('aaaa');
+        console.log(arr);
+        console.log(arr.pop());
+        // 정렬(sort) / 누적(reduce) / 필터(filter) / 재구성(map)
+    </script>
+</body>
+</html>

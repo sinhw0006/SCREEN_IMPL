@@ -7,34 +7,93 @@
 </head>
 <body>
     <script>
-        // 배열
-        let arr = ['str1','str2',null, false,true,undefined,{name:"홍길돌",age:11}];
-        console.log(typeof arr);
-        console.log(arr[0], typeof arr[0])
-        console.log(arr[1], typeof arr[1])
-        console.log(arr[2], typeof arr[2])
-        console.log(arr[3], typeof arr[3])
-        console.log(arr[4], typeof arr[4])
-        console.log(arr[5], typeof arr[5])
-        console.log(arr[6], typeof arr[6])
+        // // 배열
+        // let arr = ['str1','str2',null, false,true,undefined,{name:"홍길돌",age:11}];
+        // console.log(typeof arr);
+        // console.log(arr[0], typeof arr[0])
+        // console.log(arr[1], typeof arr[1])
+        // console.log(arr[2], typeof arr[2])
+        // console.log(arr[3], typeof arr[3])
+        // console.log(arr[4], typeof arr[4])
+        // console.log(arr[5], typeof arr[5])
+        // console.log(arr[6], typeof arr[6])
 
-        console.log(arr);
-        arr[7] = 100;
-        console.log(arr);
-        arr[10] = `${arr[2]}`;
-        console.log(arr);
-        console.log(arr[8],arr[9],arr[500]);
-        console.log(arr.length);
-        // 배열 함수 - forEach
-        console.log("======================")
-        arr.forEach((item)=>{
-            console.log('item : ',item);
+        // console.log(arr);
+        // arr[7] = 100;
+        // console.log(arr);
+        // arr[10] = `${arr[2]}`;
+        // console.log(arr);
+        // console.log(arr[8],arr[9],arr[500]);
+        // console.log(arr.length);
+        // // 배열 함수 - forEach
+        // console.log("======================")
+        // arr.forEach((item)=>{
+        //     console.log('item : ',item);
             
-        }) // 콜백 함수
-        arr.push('aaaa');
-        console.log(arr);
-        console.log(arr.pop());
+        // }) // 콜백 함수
+        // arr.push('aaaa');
+        // console.log(arr);
+        // console.log(arr.pop());
+        // ====================================================
         // 정렬(sort) / 누적(reduce) / 필터(filter) / 재구성(map)
+        // ====================================================
+        // 정렬
+        // let arr_2 = [11,67,345,9,34,7,4,6534,8,35,61];
+        // arr_2.sort(); // 배열의 요소들이 문자열로 변환되어 사전편찬 순서로 정렬(오름차순)
+                        // Object와 null은 순서에 따라 정렬
+        // arr_2.forEach((item) =>{
+            // console.log(item);
+        // })
+        // arr_2.sort((a,b) =>{return b-a;}); // 내림차순 정렬
+        // 약식
+        // arr_2.sort((a,b) => b-a);
+        // arr_2.forEach(item=>console.log("item :",item));
+        // ====================================================
+        // 필터
+        // let arr_3 = [10,56334,14,true,null,156,'36',7657,7436,undefined,36,'4326',4,7345,{a:"a",b:"b"}];
+        // let filtered_arr1 = arr_3.filter(item=>typeof item == 'number');
+        // console.log(filtered_arr1);
+
+        // arr_3.filter(item=>typeof item == 'string')
+        //     .forEach(element => {console.log(element);});
+        // ====================================================
+        // 누적  //결과값 = arr_4.reduce((누산변수,item) => {return 연산로직}, 누산변수의 초기 값)
+        // let arr_4 = [10,56334,14,true,null,156,'36',7657,7436,undefined,36,'4326',4,7345,{a:"a",b:"b"}];
+        // console.log(arr_4.filter((item)=>{return typeof item=='number'}).reduce((sum,item)=>{return sum+item},0));
+        // ====================================================
+        // 배열
+        // let arr_5 = [
+        //     {pid:"1",pname:"모니터",price:100,amount:50},
+        //     {pid:"2",pname:"노트북",price:150,amount:60},
+        //     {pid:"3",pname:"냉장고",price:250,amount:30},
+        //     {pid:"4",pname:"데스크탑",price:70,amount:19},
+        //     {pid:"5",pname:"가습기",price:10,amount:200},
+        // ];
+        // arr_5.forEach(item => console.log(item));
+        // console.log("=======================")
+        // arr_5.forEach((item,index) => {console.log(index,item.price);});
+        // arr_5.filter((item)=>{return item.price>=100}).forEach(item=>console.log(item));
+        // console.log("=======================")
+        // arr_5.filter((item)=>{return item.amount<=30}).forEach(item=>console.log(item));
+        // ====================================================
+        // 맵 // 재구성 배열.map((item)->{return 재구성할item;});
+        let arr_6 = [
+            {pid:"1",pname:"모니터",price:100,amount:50},
+            {pid:"2",pname:"노트북",price:200,amount:15},
+            {pid:"3",pname:"냉장고",price:250,amount:30},
+            {pid:"4",pname:"데스크탑",price:70,amount:19},
+            {pid:"5",pname:"가습기",price:10,amount:200},
+        ];
+        // 수량이 50이상인 요소만 필터링해서/price 오름차순/ price*amount 항목을 추가
+        arr_6.filter((item)=>{return item.amount >=30})
+            .sort((a,b) =>{return a.price - b.price})
+            .map((item)=>{
+                item = {...item, 'total_price':item.price*item.amount};
+                console.log("in map",item);
+            });
+        // ====================================================
+        // 문제
+        
     </script>
 </body>
 </html>

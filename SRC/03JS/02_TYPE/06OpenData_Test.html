@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/중구맛집.js"></script>
+</head>
+
+<body>
+    <script>
+        // console.log("전체데이터",중구맛집);
+
+        // const 중구맛집_data = 중구맛집.data;
+        // console.log(중구맛집_data);
+        // 음식카테고리 BZ_NM MNU GNG_CS
+        let a = 중구맛집.data.filter((item) => { return item.FD_CS == "한식" });
+        // console.log(a);
+
+        let b = 중구맛집.data.map(item => {
+            items = { 'BZ_NM': item.BZ_NM, 'MNU': item.MNU, 'GNG_CS': item.GNG_CS };
+            return items;
+        })
+        // console.log(b);
+        b.map((item) => {
+            let replaced = item.MNU.replaceAll('<br />', "\n");
+            let menu_arr = replaced.split("\n");
+            // console.log(menu_arr);
+            menu_arr.map((menu) => {
+                menu.trim();
+                let splited_space = menu.trim().split(' ');
+                splited_space.map((menu2) => {
+
+                })
+            });
+        });
+
+        let orderList = [];
+        orderList = [
+            // {OID:"주문번호",BN_NM:"상품명",GNG_CS:"주소",MNU:"메뉴명",PRC:"가격",AMT:"수량"}
+            { OID: 1, BN_NM: "장모님 국밥", GNG_CS: "대구광역시 중구 삼덕로2가 149-6", MNU: "돼지국밥", PRC: 9000, AMT: 1 }
+        ];
+    </script>
+</body>
+
+</html>

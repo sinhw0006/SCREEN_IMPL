@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object 객체 : 객체를 다루는 기본함수 제공
+        // const obj = {name:"홍길동",age:15};
+        // console.log(obj);
+        // console.log(Object.keys(obj));
+        // console.log(Object.values(obj));
+
+        // let ob1 = {addr:"대구"};
+        // let ob2 = {gender:"M"};
+        // console.log(Object.assign(obj,ob1,ob2));
+        // Object.freeze(obj);
+        // obj["age"]=100;
+        // obj.name = "홍홍홍";
+        // console.log(obj);
+        // Object.seal(obj);
+
+        // ==========================================
+        // 프로토타입 함수 정의
+        // ==========================================
+        // Person으로 객체 생성
+        function Person(name){
+            this.name=name;
+        }
+
+        const person1 = new Person('홍길동');
+        console.log(person1);
+        person1.toString();
+        // Person으로 기능 생성
+        Person.prototype.hello=function(){
+            console.log(`안녕 나는 ${this.name}입니다`);
+        };
+        person1.hello();
+
+        const person2 = new Person('남길동');
+        console.log(person2);
+        person2.hello();
+    </script>
+</body>
+ 0</html>

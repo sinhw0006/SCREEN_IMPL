@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 상위 프로토타입 함수
+        function Animal(name) {
+            console.log('Animal 생성자 호출!');
+            this.name = name;
+        }
+        // 상위 프로토타입에 기능 추가
+        Animal.prototype.getName=function(){console.log(`my name is ${this.name}`)}
+        function Dog(name,kind)  {
+            Animal.call(this,name); // 상위 생성자 호출
+            console.log("Dog 생성자 호출!");
+            this.kind = kind;
+        }
+
+        function Pomae(name,kind,color) {
+            console.log("pomae 생성자 호출!");
+            Dog.call(this,name,kind);
+            this.color = color;
+        }
+        Dog.prototype=Object.create(Animal.prototype); // 프로토타입간 상속
+        Pomae.prototype=Object.create(Dog.prototype);
+        // => 상위 프로토타임의 기능을 상속
+
+        // 하위 프로토타입 함수
+        const dog1 = new Dog('Popi','리트');
+        console.log(dog1);
+        dog1.getName();
+
+        const dog2 = new Pomae('ppippi','포메','red');
+        console.log(dog2);
+        dog2.getName();
+        
+    </script>
+</body>
+</html>

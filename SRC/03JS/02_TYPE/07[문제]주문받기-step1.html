@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="./css/주문받기.css">
+    <link rel="stylesheet" href="./주문받기.css">
 
     <script src="./js/중구맛집.js"></script>
     <script>
@@ -72,14 +72,11 @@
                     <option value=""></option>
                 </select>
             </div>
-            <div class="item">
-                <label>메뉴</label>
+            <div class="item" style="display: flex; flex-direction: column;">
+                <span>메뉴</span>
                 <ul class="menu-list-restorant">
 
                 </ul>
-            </div>
-            <div>
-                <button>검색</button>
             </div>
         </form>
     </div>
@@ -90,11 +87,11 @@
         <form name="form2" onsubmit="return falses">
             <div class="item">
                 <label>주문번호 : </label>
-                <input type="text" name="주문번호" />
+                <input type="text" name="주문번호" readonly />
             </div>
             <div class="item">
                 <label>상호명 : </label>
-                <input type="text" name="상호명" />
+                <input type="text" name="상호명" readonly />
             </div>
             <div class="item">
                 <label>메뉴명 : </label>
@@ -109,7 +106,7 @@
                 <input type="text" name="수량" />
             </div>
             <div>
-                <button>주문하기</button>
+                <a href="javascript:void(0)" class="order">주문하기</a>
             </div>
 
         </form>
@@ -123,23 +120,27 @@
         <div class="items">
             <div class="item">
                 <label>주문번호 : </label>
-                <input type="text" name="주문번호" />
+                <input type="text" name="주문번호" readonly />
+            </div>
+            <div class="item">
+                <label>상호명 : </label>
+                <input type="text" name="상호명" readonly />
             </div>
             <div class="item">
                 <label>메뉴명 : </label>
-                <input type="text" name="주문번호" />
+                <input type="text" name="메뉴명" readonly />
             </div>
             <div class="item">
                 <label>가격 : </label>
-                <input type="text" name="주문번호" />
+                <input type="text" name="가격" readonly />
             </div>
             <div class="item">
                 <label>수량 : </label>
-                <input type="text" name="주문번호" />
+                <input type="text" name="수량" readonly />
             </div>
             <div class="item">
                 <label>지불금액</label>
-                <input type="text" name="주문번호" />
+                <input type="text" name="지불금액" readonly />
             </div>
         </div>
     </div>
@@ -156,47 +157,83 @@
         // step-1 - 상호명 선택하기
         // (RenewaledMenu안의 모든 상호명을 select이하 option으로 넣어보세요 - forEach사용해서 - )
         //---------------------------------------
-        console.log("RenewaledMenu", RenewaledMenu);
+        // console.log("RenewaledMenu", RenewaledMenu);
         //--------------------
         // 예시
         //--------------------
         const selectRestorant = document.querySelector('.select-restorant'); // SelectNode탐색
         const menuListRestorant = document.querySelector('.menu-list-restorant');
         let count = 0;
+        let orderCount = 1;
         let selectBZ_name;
         RenewaledMenu.forEach(element => {
             const opNode = document.createElement("option"); // 새노드생성    
             // opNode = "<option></option>"
-            opNode.innerHTML = element.BZ_NM+"<br />";       //option 내의 content에 내용저장(식당명)
+            opNode.innerHTML = element.BZ_NM + "<br />";       //option 내의 content에 내용저장(식당명)
             // opNode = "<option>element.BZ_NM+"<br />"</option>"
             selectRestorant.appendChild(opNode);   //selectNode의 자식으로 붙이기
         });
         function selectBZ_NM() {
             menuListRestorant.innerHTML = ""
             selectBZ_name = selectRestorant.value;
-            RenewaledMenu.filter((item) => { 
-            console.log(item.BZ_NM, selectBZ_name);
-            return item.BZ_NM == selectBZ_name })
-            .forEach((item2)=>{
-                console.log(item2)
+            const SelectStoreMenu = RenewaledMenu.filter((item) => {
+                document.form2.주문번호.value = orderCount;
+                document.form2.상호명.value = selectBZ_name;
+                return item.BZ_NM == selectBZ_name
+            })[0].MNU;
+            // console.log(SelectStoreMenu);
+            SelectStoreMenu.forEach((item2) => {
+                // console.log(item2)
                 const liNode = document.createElement("li");
-                liNode.innerHTML = item2.MNU;
+                liNode.innerHTML = item2;
                 menuListRestorant.appendChild(liNode);
             });
         }
-
-        
         // step-2
         // 
-
-        // step-3
-
-        // 
-
-        // 주문 리스트 아이템 추가하기
-        const addOrderItem = () => {
-
+        function OrderInput(orded_idx, BZ_name, MNU, price, count) {
+            this.orderList = [{
+                '0': orded_idx,
+                '1': BZ_name,
+                '2': MNU,
+                '3': price,
+                '4': count,
+                '5': Number(price) * Number(count)
+            }]
         }
+        OrderInput.prototype.add = function (orded_idx, BZ_name, MNU, price, count) {
+            const orderList = {
+                '0': orded_idx,
+                '1': BZ_name,
+                '2': MNU,
+                '3': price,
+                '4': count,
+                '5': Number(price) * Number(count)
+            }
+            this.orderList.push(orderList);
+        }
+        fu
+        const orderListForm = document.form2;
+        const orderBtn = document.querySelector('.order');
+        const orderListArr = new OrderInput(0, 0, 0, 1000, 5);
+        orderListArr.orderList.pop();
+        orderBtn.addEventListener('click', () => {
+            const 주문번호 = orderListForm.주문번호.value;
+            orderListForm.주문번호.value = ++orderCount;
+            const 상호명 = orderListForm.상호명.value;
+            const 메뉴명 = orderListForm.메뉴명.value;
+            const 가격 = orderListForm.가격.value;
+            const 수량 = orderListForm.수량.value;
+            orderListArr.add(주문번호, 상호명, 메뉴명, 가격, 수량);
+            console.log(orderListArr.orderList);
+            const orderCheckList = document.querySelectorAll('.items>.item>input');
+            console.log(orderListArr.orderList[0]);
+            for (let i = 0; i < orderListArr.orderList.length; i++) {
+                for (let j = 0; j < orderCheckList.length; j++) {
+                    orderCheckList[j].value = orderListArr.orderList[i][j];
+            }
+            }
+        });
     </script>
 </body>
 

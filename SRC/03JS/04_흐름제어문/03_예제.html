@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        nav {
+            height: 80px;
+            border: 1px solid;
+        }
+
+        nav>.main-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav>.main-menu>li {
+            width: 100%;
+            max-width: 120px;
+            text-align: center;
+            border: 1px solid white;
+            background-color: orange;
+            position: relative;
+        }
+
+        nav>.main-menu>li>a {
+            display: block;
+        }
+        nav>.main-menu>li>.sub-menu{
+            display: none;
+            list-style: none;
+            margin: 0; padding: 0;
+            background-color: royalblue;
+            position: absolute;
+            width: 100%;
+            top: 20px;
+            left: 0;
+        }
+
+        nav>.main-menu>li:hover>.sub-menu{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="top-header">
+
+            </div>
+            <nav>
+                <ul class="main-menu">
+
+                </ul>
+            </nav>
+        </header>
+        <footer>
+            <form name="navForm" onsubmit="return false">
+                <input type="text" name="menuname">
+                <a href="javascript:void(0)" class="nav-btn">메뉴만들기</a>
+            </form>
+            <form name="modeForm" onsubmit="return false">
+                <select name="setViewMode" id="">
+                    <option value="mobile">모바일</option>
+                    <option value="desktop">데스크탑</option>
+                </select>
+                <a href="javascript:void(0)" class="view-mode-btn">가로형/세로형</a>
+            </form>
+            <form name="subMenuForm" onsubmit="return false">
+                <select name="subMenuName" class="subMenuName" id="">
+                </select>
+                <input type="text" name="subname">
+                <a href="javascript:void(0)" class="sub-menu-btn">서브메뉴만들기</a>
+            </form>
+        </footer>
+    </div>
+    <script>
+        const mainMenuEl = document.querySelector('.main-menu');
+        // const settings = prompt('NAV메뉴를 입력하세요(띄어쓰기로 구분)');
+        const navBtnEl = document.querySelector('.nav-btn');
+
+        navBtnEl.addEventListener('click', function () {
+            const form = document.navForm;
+            const navMenuList = form.menuname.value.split(' ');
+            console.log(navMenuList);
+            mainMenuEl.innerHTML = ''
+            // for (let i = 0; i < navMenuList.length; i++) {
+            //     const liNode = document.createElement('li');
+            //     liNode.innerHTML = navMenuList[i];
+            //     mainMenuEl.appendChild(liNode);
+            // }
+            navMenuList.forEach(element => {
+                const liNode = document.createElement('li');
+                const aEl = document.createElement('a');
+                const optionNode = document.createElement('option');
+                const subMenuNameEl = document.querySelector('.subMenuName');
+                aEl.setAttribute('href', 'javascript:void(0)');
+                optionNode.innerHTML = element;
+                aEl.innerHTML = element;
+                optionNode.setAttribute('value', element);
+                subMenuNameEl.append(optionNode);
+                liNode.appendChild(aEl);
+                mainMenuEl.appendChild(liNode);
+            });
+        });
+
+        //View Mode BTN
+        const viewModeBtnEl = document.querySelector('.view-mode-btn');
+        viewModeBtnEl.addEventListener('click', () => {
+            const form = document.modeForm;
+            const modeOption = form.setViewMode.value;
+            const wrapperEl = document.querySelector('.wrapper');
+            if (modeOption === 'mobile') {
+                wrapperEl.style.width = '380px';
+                wrapperEl.style.margin = '0 auto';
+            } else if (modeOption === 'desktop') {
+                wrapperEl.style.width = '100%';
+            }
+        })
+
+        const subMenuBtnEl = document.querySelector('.sub-menu-btn');
+        subMenuBtnEl.addEventListener('click', () => {
+            const form = document.subMenuForm;
+            const mainOption = form.subMenuName.value;
+            const subname = form.subname.value;
+
+
+
+            // const liEl = document.createElement('li');
+
+            const mainMenuLiEls = document.querySelectorAll('.main-menu>li>a');
+            mainMenuLiEls.forEach(element => {
+                if (element.textContent === mainOption) {
+                    const ulEl = document.createElement('ul');
+                    ulEl.classList.add('sub-menu');
+                    const liEl = element.parentNode;
+                    const submenuArr = subname.split(' ');
+                    submenuArr.forEach(str=>{
+                        const newLi = document.createElement('li');
+                        const newA = document.createElement('a');
+                        newA.setAttribute('href','javascript:void(0)');
+                        newA.innerHTML = str;
+                        
+                        newLi.appendChild(newA);
+                        ulEl.appendChild(newLi);
+                    });
+                    liEl.append(ulEl);
+                    console.log(liEl);
+                }
+            });
+        })
+
+
+
+    </script>
+</body>
+
+</html>

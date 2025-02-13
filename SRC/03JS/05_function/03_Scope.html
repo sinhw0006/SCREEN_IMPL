@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 스코프(SCOPE)
+        // 변수나 함수가 접근할 수 있는 범위
+        // 전역스코프(Global Scope)와 지역 스코프(Local Scope)로 구분
+        // 전역 스코프 : 모든 지역에서 접근이 가능
+
+        // 지역 스코프 : 특정 영역({})에서만 접근이 가능
+        // - 함수스코프             : 함수 내에서 선언된 변수는 해당 함수 내에서만 접근가능(var)
+        // - 블록스코프             : 블록 내부에서만 접근 가능 (if, for, while....)(let,const)
+        // - 렉시컬(Lexical) 스코프 : 변수를 선언한 위치에 따라서 스코프가 결정
+
+        // 전역 스코프
+        // var g_val = "전역변수";
+
+        // function a(){
+        //     console.log('a func',g_val);
+        // }
+        // a();
+        // if(true){
+        //     console.log('a func',g_val);
+        // }
+        // console.log('a func',g_val);
+
+        // 함수 스코프
+        function f1(){
+            var f1_v = 'f1_val';
+            console.log(f1_v);
+        }
+        function f2(){
+            var f2_v = 'f2_val';
+            console.log(f2_v);
+        }
+        f1();
+        f2();
+        // 블록 스코프
+        if(true){
+            let v_1 = "블록";
+            console.log(v_1);
+        }
+    </script>
+</body>
+</html>

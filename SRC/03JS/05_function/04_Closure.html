@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 클로저
+        // 내부 함수가 외부 함수의 변수에 접근할 수 있는 것을 의미
+        // 정보 은닉(Information Hiding) : 클로저를 사용하여 외부에서 접근할
+        // 수 없도록 변수를 보호하고, 함수를 통해서만 접근 가능하도록 만들 수 있음.
+        // 
+        // 데이터 보존(Data Persistence) : 클로저를 사용하여 함수가 생성 될 당시의
+        //  환경을 유지하면서, 데이터를 영구적으로 보존할 수 있습니다.
+        // 비동기 처리(Asynchronous Operations) : 클로저를 사용하여 비동기적인
+        // 작업에 결과를 유지하고, 필요할 떄에 접근할 수 있도록 할 수 있습니다.
+
+        // 01
+        // 외부 함수
+
+        
+        function outer() {
+            let state = 0;
+            function addOne() {
+                state++;
+                console.log('state..', state);
+            }
+            return addOne;
+        }
+
+
+        const clousureFunc = outer();
+        console.log('clousureFunc', clousureFunc);
+        clousureFunc();
+        clousureFunc();
+        clousureFunc();
+        clousureFunc();
+        console.log(outer);
+    </script>
+</body>
+
+</html>

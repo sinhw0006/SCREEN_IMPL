@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 호이스팅(HOISTING)
+        // 변수와 함수의 선언이 코드 실행전에 메모리에 미리 저장되는 현상
+        // function 예약어 사용시 호이스팅 처리됨
+        // var 예약어 사용시 호이스팅 처리됨
+
+        // console.log(a);
+        // var a = 10;
+        // console.log(a);
+
+        // console.log(b);
+        // let b = 10;
+        // console.log(b);
+        ///////////////////////////////////////////
+        hello1();
+        function hello1(){
+            console.log('hello1 World!');
+        }
+
+        hello2();
+        const hello2 = () =>{
+            console.log('hello2 World!');
+        }
+        
+    </script>
+</body>
+</html>

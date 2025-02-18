@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            margin: 100px auto;
+        }
+        .container>*{
+            margin-bottom: 20px;
+        }
+        .container>h1{
+            text-align: center;
+        }
+        .container>#target-text{
+            font-size: 1.5rem;
+            text-align: left;
+        }
+        .container>#input-text{
+            width: 100%;
+            height: 35px;
+            font-size: 1.2rem;
+        }
+        .container>#result{
+            font-size: 1.2rem;
+            text-align: left;
+            min-height: 35px;
+        }
+        .container>#result>.success{
+            color: green;
+        }
+        .container>#result>.fail{
+            color: red;
+        }
+        .container>#percentage{
+            border: 1px solid;
+            width: 500px;
+            height: 22px;
+            position: relative;
+        }
+        .container>#percentage>span{
+            position: absolute;
+            width: 0px;
+            background-color: lightgreen;
+            text-align: end;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>타자연습</h1>
+        <div id="target-text">묻고 더블로 가!</div>
+        <div id="result">입력된 값이 올바른지 여부를 확인하는 부분입니다</div>
+        <input type="text" id="input-text" placeholder="위 문장을 입력하세요">
+        <div id="percentage">
+            <span id="icon">✈</span>
+        </div>
+    </div>
+    <script>
+        const inputText = document.querySelector('#input-text');
+        const targetText = document.querySelector('#target-text');
+        const result = document.querySelector('#result');
+        const percentage = document.querySelector('#icon');
+        // 문장 배열
+        const texts = [
+            "묻고 더블로 가!",
+            "꼭 그렇게 모두 가져가야만 속이 후련했냐",
+            "신에게는 아직 12척의 배가 남아 있사옵니다",
+            "아직 한 발 남았다"
+        ];
+        let textsId = parseInt(Math.random()*100) % texts.length;
+        targetText.innerHTML=texts[textsId]
+
+        // 문장 랜덤 배치
+        
+        // 이벤트 처리
+
+        // 하나씩 확인
+        inputText.addEventListener('input',(e)=>{
+            // 일치 여부 체크
+            const text = texts[textsId];
+            // result에 입력한 내용 표시(OK : green // X : Red)
+            let resultHTML ='';
+            let success = 0;
+            const inputValue = e.target.value;
+            // console.log(e);
+            result.innerHTML=''
+            for(let i=0; i<inputValue.length; i++){
+                if(text[i] === inputValue[i]){
+                    result.innerHTML +=`<span class="success">${inputValue[i]}</span>`;
+                    success++;
+                    const percent = ((success/text.length)*100);
+                    const percentWidth = percent * 5;
+                    percentage.style.width = `${percentWidth}px`
+                    // console.log(success, text.length);
+                } else{
+                    result.innerHTML +=`<span class="fail">${inputValue[i]}</span>`;
+                }
+            }
+            if(text === inputValue){
+                setTimeout(()=>{
+                    inputText.disabled = true;
+                    // console.log(textsId,texts.length)
+                    // textsId = (textsId+1)===texts.length ? 0 : ++textsId;
+                    const checkValue = textsId;
+                    while(checkValue === textsId){
+                        textsId = parseInt(Math.random()*100) % texts.length;
+                    }
+                    // console.log(textsId,texts.length)
+                    targetText.innerHTML = texts[textsId];
+                    e.target.value = '';
+                    result.innerHTML='';
+                    inputText.disabled = false;
+                    success = 0;
+                    inputText.focus();
+                    percentage.style.width = "0px";
+                },100);
+            }
+        });
+        
+        // 전체 확인
+        inputText.addEventListener('keydown',(e)=>{
+            if(e.keyCode === 13){
+                const text = texts[textsId];
+                if(text == e.target.value){
+                    // console.log(textsId,texts.length)
+                    textsId = (textsId+1)===texts.length ? 0 : ++textsId;
+                    // console.log(textsId,texts.length)
+                    targetText.innerHTML = texts[textsId];
+                    e.target.value = '';
+                    result.innerHTML='';
+                } else{
+                    textsId = (textsId+1)===texts.length ? 0 : ++textsId;
+                    targetText.innerHTML = texts[textsId];
+                    e.target.value = '';
+                    result.innerHTML='';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

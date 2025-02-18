@@ -127,6 +127,7 @@
         let isMoving = false;
         let offsetX = 0;
         let offsetY = 0;
+        let zIndex = 0;
         let targetNode = "";
 
         const articleEl = document.querySelector('article');
@@ -142,6 +143,7 @@
             e.preventDefault();
             const newDivEl = document.createElement('div');
             newDivEl.addEventListener('mousedown', movingHandler);
+            newDivEl.addEventListener('mouseup', movingHandler);
             newDivEl.classList.add('item');
             newDivEl.classList.add(dragedNode);
             newDivEl.setAttribute('style', `left:${e.clientX - 213}px; top:${e.clientY - 1}px`);
@@ -160,13 +162,12 @@
 
         const movingHandler = (e) => {
             isMoving = !isMoving ? true : false;
-            if (e.button == 2) {
+            if (e.button == 0) {
                 if(isMoving){
                     e.target.style.opacity=".6";
                     targetNode=e.target;
                     offsetX = e.offsetX
                     offsetY = e.offsetY
-                    console.log(offsetX, offsetY);
                     articleEl.addEventListener('mousemove',mouseXYsaveHandler);
                 }
                 else {

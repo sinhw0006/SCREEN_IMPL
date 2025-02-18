@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid gray;
+        }
+
+        input {
+            width: 90%;
+            height: 100%;
+            outline: none;
+            border: 0px;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <input id="rownum" placeholder="행의개수입력" style="width:200px;">
+    <input id="colnum" placeholder="열의개수입력" style="width:200px;">
+    <button onclick="makemap()">생성</button>
+
+    <hr>
+    <table id="tbl">
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        const rownumInput = document.querySelector('#rownum');
+        const colnumInput = document.querySelector('#colnum');
+        const tableEl = document.querySelector('#tbl>tbody');
+        let selectTdCount = 0;
+        let middleTd = 0;
+
+        const makemap = () => {
+            // 테이블 초기화
+            tableEl.innerHTML = '';
+            // 중간값 선정
+            const middleRowValue = Math.floor(Number(rownumInput.value) / 2);
+            const middleColValue = Math.floor(Number(colnumInput.value) / 2);
+            // 테이블 생성
+            for (let i = 0; i < rownumInput.value; i++) {
+                const newTr = document.createElement('tr');
+                for (let j = 0; j < colnumInput.value; j++) {
+                    const newTd = document.createElement('td');
+                    newTd.classList.add(i * Number(colnumInput.value) + j + 1);
+                    newTd.innerHTML = i * Number(colnumInput.value) + j + 1;
+                    // 중간값 스타일 지정
+                    if (i == middleRowValue && j == middleColValue) {
+                        newTd.style.backgroundColor = 'lightgray';
+                        // 선택된 td값 저장
+                        selectTdCount = i * Number(colnumInput.value) + j + 1;
+                        // 중간 td값 저장
+                        middleTd = i * Number(colnumInput.value) + j + 1;
+                    }
+                    newTr.appendChild(newTd);
+                }
+                tableEl.appendChild(newTr);
+            }
+            // 클릭 이벤트
+            document.querySelectorAll('td').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    // 배경 초기화
+                    document.querySelectorAll('td').forEach(item => {
+                        item.style.backgroundColor = 'white';
+                    });
+                    // 선택 배경색 변경
+                    item.style.backgroundColor = 'lightgray';
+                    selectTdCount = Number(e.target.classList.value);
+                    console.log(selectTdCount);
+                });
+            });
+            // 키보드 이벤트
+            window.addEventListener('keyup', (e) => {
+                //37 : left
+                //38 : up
+                //39 : right
+                //40 : down
+                console.log("keyCode : ",e.keyCode)
+                switch (Number(e.keyCode)) {
+                    case 37:
+                        selectTdCount -= 1
+                        console.log("left");
+                        break;
+                    case 38:
+                        selectTdCount -= Number(colnumInput.value);
+                        console.log("up");
+                        break;
+                    case 39:
+                        selectTdCount += 1
+                        console.log("right");
+                        break;
+                    case 40:
+                        selectTdCount += Number(colnumInput.value);
+                        console.log("down");
+                        break;
+                }
+                // 값을 넘어갈 시 중간값으로 초기화
+                if(selectTdCount <= 0|| selectTdCount > Number(colnumInput.value)*Number(rownumInput.value)){
+                    selectTdCount = middleTd;
+                }
+                // 선택된 td 배경 지정
+                document.querySelectorAll('td').forEach(item => {
+                            if(Number(item.classList.value) == selectTdCount){
+                                item.style.backgroundColor = 'lightgray';
+                                console.log("true");
+                            } else{
+                                item.style.backgroundColor = 'white';
+                            }
+                        });
+            })
+        }
+    </script>
+</body>
+
+</html>

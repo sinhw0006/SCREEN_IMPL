@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    INPUT : <input id="input1"><br>
+    <p id="p1"></p>
+    <hr>
+    composition start : <input id="input2"><br>
+    <p id="p2"></p>
+    <hr>
+    composition update : <input id="input3"><br>
+    <p id="p3"></p>
+    <hr>
+    composition end : <input id="input4"><br>
+    <p id="p4"></p>
+    <hr>
+    <script>
+        // input                : 텍스트 입력이 완료될때 발생(한글포함)
+        // compositionstart     : 한글 조합 시작시 발생
+        // compositionupdate    : 한글 조합 중 발생(현재 조합 상태를 확인)
+        // compositionend       : 한글 조합 완료시 발생(완성된 글자 확인)
+        const InputInput = document.querySelector('#input1');
+        const compoStartInput = document.querySelector('#input2');
+        const compoUpdateInput = document.querySelector('#input3');
+        const compoEndInput = document.querySelector('#input4');
+        const p1E1 = document.querySelector('#p1');
+        const p2E1 = document.querySelector('#p2');
+        const p3E1 = document.querySelector('#p3');
+        const p4E1 = document.querySelector('#p4');
+        InputInput.addEventListener('input',(e)=>{
+            console.log(e);
+            p1E1.innerHTML = e.target.value;
+        });
+        compoStartInput.addEventListener('compositionstart',(e)=>{
+            console.log(e);
+            p2E1.innerHTML = e.target.value;
+        });
+        compoUpdateInput.addEventListener('compositionupdate',(e)=>{
+            console.log(e.data);
+            p3E1.innerHTML = e.target.value;
+        });
+        compoEndInput.addEventListener('compositionend',(e)=>{
+            console.log(e.data);
+            p4E1.innerHTML += e.data;
+        });
+    </script>
+</body>
+</html>

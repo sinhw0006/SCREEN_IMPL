@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            border: 1px solid;
+        }
+
+        .item {
+            min-width: 300px;
+            margin: 5px;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .left {
+            width: calc(100% - 30px);
+            border: 1px solid;
+            text-align: left;
+            line-height: 35px;
+            font-size: 1.5rem;
+        }
+
+        .right {
+            width: 30px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="input">
+    <span> | </span>
+    <button class="btn">입력</button>
+    <hr>
+    <div class="container"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnEl = document.querySelector('.btn');
+            const inputEl = document.querySelector('.input');
+            const containerEl = document.querySelector('.container');
+
+            btnEl.addEventListener('click', () => {
+                const text = inputEl.value;
+                if (!isValid(text)) return
+                createNode(text);
+                inputEl.value = '';
+            });
+
+            function createNode(text) {
+                const newDiv = document.createElement('div');
+                const newLeftDiv = document.createElement('div');
+                const newRightDiv = document.createElement('div');
+                // 스타일링 class
+                newDiv.classList.add('item');
+                newLeftDiv.classList.add('left');
+                newRightDiv.classList.add('right');
+                // 값 추가
+
+                newLeftDiv.innerHTML = text;
+                newRightDiv.innerHTML = '🗑';
+                //노드 연결
+                newDiv.appendChild(newLeftDiv);
+                newDiv.appendChild(newRightDiv);
+                containerEl.appendChild(newDiv);
+                // 삭제버튼 이벤트 추가
+                newRightDiv.addEventListener('click', (e) => {
+                    const perentEl = e.target.parentElement;
+                    deleteNode(e.target);
+                });
+            }
+            function deleteNode(btnEl) {
+                perentEl = btnEl.parentElement
+                if (confirm("삭제하시겠습니까?")) {
+                        perentEl.remove();
+                    };
+            }
+            // 유효성 체크 함수
+            function isValid(text) {
+                const regex =/^[0-9]/; // 첫 문자가 숫자 값
+                if (text.trim() === '' || text.trim() == null) {
+                    console.error('inValid error : 공백X');
+                    alert("값을 입력해주세요");
+                    return false
+                } else if(regex.test(text)){
+                    alert("숫자는 첫번째 글자로 사용이 불가능 합니다.");
+                    console.error('inValid error : 첫 문자 숫자X');
+                    return false
+                }
+                return true
+            }
+        })
+    </script>
+</body>
+
+</html>

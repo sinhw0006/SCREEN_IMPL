@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- GOOGLE ICON -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        * {
+            font-size: 1rem;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 300,
+                'GRAD' 0,
+                'opsz' 24;
+            font-size: 1.5rem;
+        }
+
+        input {
+            height: 35px;
+        }
+
+        .btn {
+            width: 75px;
+            height: 35px;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        th,
+        td {
+            width: 50px;
+            height: 35px;
+            border: 1px solid;
+            text-align: center;
+        }
+
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 150px;
+        }
+
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 700px;
+        }
+
+        td:nth-child(4) {
+            font-size: 2rem;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        td:nth-child(4) span {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            line-height: 35px;
+        }
+
+        td>input {
+            width: calc(100% - 3px);
+            height: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form action="" name="joinForm" onsubmit="return false">
+        <input name="username" placeholder="이름을 입력하세요">
+        <input type="number" name="age" placeholder="나이를 입력하세요">
+        <input name="address" placeholder="주소를 입력하세요">
+        <button class="btn">입력</button>
+    </form>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+    <script>
+        // form의 기본기능은 비활성화합니다
+        //입력버튼을 눌렀을때 table의 tbody에 입력된 (이름/나이/주소/삭제버튼)이 생성될수 있도록합니다
+        //입력된 노드의 이름/나이/주소를 수정할수 있도록합니다.
+        //특정행의 삭제버튼을 클릭했을때 해당 행이 삭제 될수 있도록 합니다.
+
+        //특정행의 위치를 위로이동/아래로 이동이 가능하도록 합니다(나중에)
+
+        const btnEl = document.querySelector('.btn');
+        const formEl = document.joinForm;
+        const usernameEl = formEl.username;
+        const ageEl = formEl.age;
+        const addressEl = formEl.address;
+        const tableBodyEl = document.querySelector('table tbody');
+
+        btnEl.addEventListener('click', () => {
+            // 유효성 체크
+            for (let i = 0; i < formEl.length - 1; i++) {
+                if (!isValid(formEl[i].value)) {
+                    return
+                }
+            }
+            const formAry = Array.from(formEl);
+            createTbody(formAry);
+        })
+
+        function createTbody(formAry) {
+            const newTr = document.createElement('tr');
+            newTr.setAttribute('draggable',true);
+            formAry.forEach(item => {
+                const newTd = document.createElement('td');
+                const newInput = document.createElement('input');
+                newInput.value = item.value;
+                newInput.readOnly = true;
+                InputEvents(newInput);
+                item.value = '';
+                if (newInput.value != '') {
+                    // Input 태그 추가
+                    newTd.appendChild(newInput);
+                } else {
+                    // 삭제버튼 및 이벤트 추가
+                    delectBtnCreate(newTd);
+                }
+                newTr.appendChild(newTd);
+            });
+            tableBodyEl.append(newTr);
+        }
+
+        function InputEvents(newInput) {
+            // 오른쪽 클릭 시 수정가능
+            newInput.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                console.log("test");
+                newInput.readOnly = false;
+                newInput.style.backgroundColor = 'lightgray';
+            });
+            // 엔터 입력 시 수정완료
+            newInput.addEventListener('keydown', (e) => {
+                if (e.keyCode == 13) {
+                    newInput.readOnly = true;
+                    newInput.style.backgroundColor = '';
+                }
+            });
+            newInput.addEventListener('blur', (e) => {
+                newInput.readOnly = true;
+                newInput.style.backgroundColor = '';
+            });
+        }
+
+        function delectBtnCreate(newTd) {
+            newTd.innerHTML = `<span class="material-symbols-outlined">delete</span>`
+            newTd.addEventListener('click', (e) => {
+                const deleteEl = e.target.parentNode.parentNode;
+                deleteNode(deleteEl);
+            });
+        }
+        function deleteNode(deleteEl) {
+            if (confirm("삭제하시겠습니까?")) {
+                deleteEl.remove();
+            }
+        }
+
+        function isValid(value) {
+            if (value == "" || value == null) {
+                alert("공백 문자입니다.")
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

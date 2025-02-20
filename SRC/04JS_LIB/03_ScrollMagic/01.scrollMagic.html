@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"
+        integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100px;
+        }
+
+        section {
+            width: 1200px;
+            margin: 0 auto;
+            height: 500px;
+            border: 1px solid;
+            margin-bottom: 20px;
+
+            position: relative;
+        }
+
+        .ball {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: goldenrod;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .move3 {
+            top: -400px;
+            left: 500px;
+        }
+
+        .move {
+            top: 400px;
+            left: 1100px;
+        }
+
+        .move2 {
+            top: 800px;
+            left: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <section></section>
+    <section class="scroll-section scroll-spy">
+        <div class="ball">BALL</div>
+    </section>
+    <section></section>
+
+    <script>
+        const spyedEl = document.querySelector('.scroll-spy');
+        const ballEl = document.querySelector('.ball');
+        const controller = new ScrollMagic.Controller()
+        document.addEventListener('scroll',()=>{
+            console.log(scrollY);
+        })
+
+        new ScrollMagic.Scene({
+            triggerElement: spyedEl, // 감시할 요소
+            triggerHook: .5,
+            duration: 200,
+            tweenChanges: true,
+        })
+            .setClassToggle(ballEl, 'move')
+            .addTo(controller);
+
+        new ScrollMagic.Scene({
+            triggerElement: spyedEl, // 감시할 요소
+            triggerHook: 0,
+        })
+            .setClassToggle(ballEl, 'move2')
+            .addTo(controller);
+
+        new ScrollMagic.Scene({
+            triggerElement: spyedEl, // 감시할 요소
+            triggerHook: 1,
+        })
+            .setClassToggle(ballEl, 'move3')
+            .addTo(controller);
+    </script>
+</body>
+
+</html>

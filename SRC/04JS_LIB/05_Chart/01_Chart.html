@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        div {
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('myChart');
+        let data = {
+            datasets: [{
+                type: 'bar',
+                label: 'line',
+                data: [150, 0, 0, 0, 0, 0],
+                backgroundColor: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                borderColor: 'lightgray',
+                borderWidth: 3,
+            },
+            {
+                type: 'bar',
+                label: 'doughnut',
+                data: [0, 654, 0, 0, 0, 0],
+                backgroundColor: ['Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red'],
+            }
+                , {
+                type: 'bar',
+                label: 'bar',
+                data: [0, 0, 684, 0, 0, 0],
+                backgroundColor: ['Orange', 'Purple', 'Green', 'Yellow', 'Blue', 'Red'],
+                borderWidth: 3,
+                borderColor: 'Black',
+                hoverBackgroundColor: "Black",
+                hoverBorderRadius: 10,
+            },
+            {
+                type: 'bar',
+                label: 'pie',
+                data: [0, 0, 0, 450, 0, 0],
+                backgroundColor: ['Green', 'Yellow', 'Purple', 'Orange', 'Red', 'Blue'],
+            },
+            {
+                type: 'bar',
+                label: 'radar',
+                data: [0, 0, 0, 0, 333, 0],
+                backgroundColor: "Purple",
+            },
+            {
+                type: 'bar',
+                label: 'polarArea',
+                data: [0, 0, 0, 0, 0, 800],
+                backgroundColor: ['Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue'],
+            }],
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+        };
+        let options = {
+            animations: {
+                // tension: {
+                //     duration: 1000,
+                //     easing: 'linear',
+                //     from: 1,
+                //     to: 0,
+                //     loop: true
+                // }
+                y: {
+                    duration: 500,
+                    easing: 'linear',
+                    loop: false,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    // max: 100,
+                    // min: 20,
+                    // ticks: {
+                    //     stepSize: 100,
+                    // }
+                },
+                x: {
+                    stacked: true,
+                    barPercentage: 0.5,
+                }
+            },
+            onClick: (event, chartEl) => {
+                console.log(chartEl[0].element.$context.raw);
+            }
+        };
+
+        new Chart(ctx, {
+            data: data,
+            options: options,
+        });
+    </script>
+</body>
+
+</html>

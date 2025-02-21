@@ -95,7 +95,8 @@
             </div>
             <div class="item">
                 <label>메뉴명 : </label>
-                <input type="text" name="메뉴명" />
+                <select style="width: 170px; height: 20px" name="메뉴명">
+                </select>
             </div>
             <div class="item">
                 <label>가격 : </label>
@@ -114,35 +115,24 @@
     </div>
 
     <hr />
-    <div class="show-block order-result-block">
+    <div class="show-block order-result-block" style="width: 100%; overflow-y: auto;">
         <span style="font-size:.7rem">주문요청시 추가되는 항목들(object생성 및 저장 및 노드CRUD)</span>
         <h1>주문 확인</h1>
-        <div class="items">
-            <div class="item">
-                <label>주문번호 : </label>
-                <input type="text" name="주문번호" readonly />
-            </div>
-            <div class="item">
-                <label>상호명 : </label>
-                <input type="text" name="상호명" readonly />
-            </div>
-            <div class="item">
-                <label>메뉴명 : </label>
-                <input type="text" name="메뉴명" readonly />
-            </div>
-            <div class="item">
-                <label>가격 : </label>
-                <input type="text" name="가격" readonly />
-            </div>
-            <div class="item">
-                <label>수량 : </label>
-                <input type="text" name="수량" readonly />
-            </div>
-            <div class="item">
-                <label>지불금액</label>
-                <input type="text" name="지불금액" readonly />
-            </div>
-        </div>
+        <table border="1px solid" style="width: 100%; text-align: center;">
+            <thead>
+                <tr>
+                    <td>주문번호</td>
+                    <td>상호명</td>
+                    <td>메뉴명</td>
+                    <td>가격</td>
+                    <td>수량</td>
+                    <td>총금액</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
     </div>
 
 
@@ -163,8 +153,9 @@
         //--------------------
         const selectRestorant = document.querySelector('.select-restorant'); // SelectNode탐색
         const menuListRestorant = document.querySelector('.menu-list-restorant');
+        const tbodyEl = document.querySelector('tbody');
         let count = 0;
-        let orderCount = 1;
+        let orderCount = Math.floor(Math.random()*10000000+10000000);
         let selectBZ_name;
         RenewaledMenu.forEach(element => {
             const opNode = document.createElement("option"); // 새노드생성    
@@ -179,15 +170,26 @@
             const SelectStoreMenu = RenewaledMenu.filter((item) => {
                 document.form2.주문번호.value = orderCount;
                 document.form2.상호명.value = selectBZ_name;
+                document.form2.메뉴명.innerHTML = '';
                 return item.BZ_NM == selectBZ_name
             })[0].MNU;
-            // console.log(SelectStoreMenu);
-            SelectStoreMenu.forEach((item2) => {
-                // console.log(item2)
+            let MenuNm = new Set();
+            SelectStoreMenu.forEach((item) => {
+                item.forEach(item2=>{
+                    if(typeof item2 != 'number'){
+                        MenuNm.add(item2);
+                    }
+                });
                 const liNode = document.createElement("li");
-                liNode.innerHTML = item2;
+                liNode.innerHTML = item;
                 menuListRestorant.appendChild(liNode);
             });
+            MenuNm.forEach((item)=>{
+                const opNode = document.createElement("option");
+                opNode.innerHTML = item;
+                opNode.value = item;
+                document.form2.메뉴명.appendChild(opNode);
+            })
         }
         // step-2
         // 
@@ -212,27 +214,33 @@
             }
             this.orderList.push(orderList);
         }
-        fu
         const orderListForm = document.form2;
         const orderBtn = document.querySelector('.order');
         const orderListArr = new OrderInput(0, 0, 0, 1000, 5);
         orderListArr.orderList.pop();
         orderBtn.addEventListener('click', () => {
             const 주문번호 = orderListForm.주문번호.value;
-            orderListForm.주문번호.value = ++orderCount;
+            orderCount = String(Math.floor(Math.random()*10000000+1));
+            while(orderCount.length < 8){
+                orderCount = "0"+ orderCount;
+            }
+            orderListForm.주문번호.value = orderCount;
             const 상호명 = orderListForm.상호명.value;
             const 메뉴명 = orderListForm.메뉴명.value;
             const 가격 = orderListForm.가격.value;
+            orderListForm.가격.value ='';
             const 수량 = orderListForm.수량.value;
+            orderListForm.수량.value ='';
             orderListArr.add(주문번호, 상호명, 메뉴명, 가격, 수량);
-            console.log(orderListArr.orderList);
-            const orderCheckList = document.querySelectorAll('.items>.item>input');
-            console.log(orderListArr.orderList[0]);
-            for (let i = 0; i < orderListArr.orderList.length; i++) {
-                for (let j = 0; j < orderCheckList.length; j++) {
-                    orderCheckList[j].value = orderListArr.orderList[i][j];
+            const newTr = document.createElement('tr');
+            const value = orderListArr.orderList[orderListArr.orderList.length-1];
+            for(let i=0; i<6;i++){
+                const newTd = document.createElement('td');
+                newTd.innerHTML = value[i];
+                newTr.appendChild(newTd);
             }
-            }
+            tbodyEl.append(newTr);
+            console.log(orderListArr.orderList[orderListArr.orderList.length-1]);
         });
     </script>
 </body>

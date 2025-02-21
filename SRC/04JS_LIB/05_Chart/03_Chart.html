@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/중구맛집.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div style="width: 800px; height: 500px; border: 1px solid; margin: 0 auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        function extractDataSet(param) {
+            const total = param.total;
+            // console.log(total);
+            const data = param.data;
+            const cat = data.map((item) => { return item.FD_CS })
+                .sort()
+                .reduce((acc, item) => {
+                    if (acc[item] !== undefined) {
+                        acc[item]++;
+                    } else {
+                        acc[item] = 1;
+                    }
+                    // console.log(acc);
+                    return acc;
+                }, {});
+            // console.log(cat);
+            // keys, values 따로 분류
+            const keys = Object.keys(cat);
+            const values = Object.values(cat);
+            // console.log(keys,values);
+            return {
+                keys: keys,
+                values: values,
+            }
+        }
+        const result = extractDataSet(중구맛집);
+        console.log(result);
+        drawChart('중구맛집',result,'myChart','bar');
+
+        function drawChart(title, obj, tag, type) {
+            const barChart = new Chart(document.getElementById(tag), {
+                type: type,
+                data: {
+                    labels: obj.keys,
+                    datasets: [{
+                        label: title,
+                        data: obj.values,
+                        backgroundColor: ['red','orange','yellow','lime','aqua','royalblue','blue','purple'],
+                        borderColor: 'black',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

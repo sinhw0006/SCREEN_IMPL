@@ -17,7 +17,7 @@
         }
 
         section {
-            width: 1200px;
+            width: 600px;
             margin: 0 auto;
             height: 500px;
             border: 1px solid;
@@ -41,60 +41,54 @@
             left: 0;
             transition: 5s;
         }
-        .move3 {
-            top: -400px;
+
+        .move {
+            top: 400px;
             left: 500px;
         }
 
         .move {
             top: 400px;
-            left: 1100px;
-        }
-
-        .move2 {
-            top: 800px;
-            left: 800px;
+            left: 500px;
         }
     </style>
 </head>
 
 <body>
     <section></section>
-    <section class="scroll-section scroll-spy">
+    <section class="scroll-section scroll-spy frist">
+        <div class="ball">BALL</div>
+    </section>
+    <section class="scroll-section scroll-spy second">
         <div class="ball">BALL</div>
     </section>
     <section></section>
 
     <script>
-        const spyedEl = document.querySelector('.scroll-spy');
+        const spyedEls = document.querySelectorAll('.scroll-spy');
         const ballEl = document.querySelector('.ball');
-        const controller = new ScrollMagic.Controller()
-        document.addEventListener('scroll',()=>{
-            console.log(scrollY);
+        const controller = new ScrollMagic.Controller();
+
+        spyedEls.forEach((item) => {
+            const ball = item.querySelector('.ball');
+            if (item.classList.contains('frist')) {
+                new ScrollMagic.Scene({
+                    triggerElement: item,
+                    triggerHook: .5,
+                    tweenChanges: true,})
+                    .setClassToggle(ball, 'move')
+                    .addTo(controller);
+            } else if (item.classList.contains('second')) {
+                new ScrollMagic.Scene({
+                    triggerElement: item,
+                    triggerHook: .5,
+                    tweenChanges: true,})
+                    .setClassToggle(ball, 'move')
+                    .addTo(controller);
+            };
         })
 
-        new ScrollMagic.Scene({
-            triggerElement: spyedEl, // 감시할 요소
-            triggerHook: .5,
-            duration: 200,
-            tweenChanges: true,
-        })
-            .setClassToggle(ballEl, 'move')
-            .addTo(controller);
 
-        new ScrollMagic.Scene({
-            triggerElement: spyedEl, // 감시할 요소
-            triggerHook: 0,
-        })
-            .setClassToggle(ballEl, 'move2')
-            .addTo(controller);
-
-        new ScrollMagic.Scene({
-            triggerElement: spyedEl, // 감시할 요소
-            triggerHook: 1,
-        })
-            .setClassToggle(ballEl, 'move3')
-            .addTo(controller);
     </script>
 </body>
 
